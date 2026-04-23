@@ -6,7 +6,7 @@ use std::{
 };
 
 use axum::{
-    body::Body,
+    body::{to_bytes, Body},
     extract::{ConnectInfo, State},
     http::{header, HeaderValue, Request},
     response::IntoResponse,
@@ -27,7 +27,7 @@ struct AppState {
 }
 
 async fn whoami(State(state): State<AppState>, request: Request<Body>) -> impl IntoResponse {
-    let (parts, _) = request.into_parts();
+    let (parts, request_body) = request.into_parts();
     let addr = parts
         .extensions
         .get::<ConnectInfo<SocketAddr>>()
@@ -35,17 +35,22 @@ async fn whoami(State(state): State<AppState>, request: Request<Body>) -> impl I
         .unwrap_or_else(|| "unknown".to_string());
     let mut body = String::new();
 
+    body.push_str(&format!("\n\nHostname: {}\n", state.hostname));
     body.push_str(&format!("LocalTime: {} \n", local_time()));
-    body.push_str(&format!("Hostname: {}\n", state.hostname));
+    body.push('\n');
+
     for ip in &state.ips {
         body.push_str(&format!("IP: {ip}\n"));
     }
+    body.push('\n');
     body.push_str(&format!("RemoteAddr: {addr}\n"));
+    body.push('\n');
     body.push_str(&format!(
         "{} {} {:?}\n",
         parts.method, parts.uri, parts.version
     ));
 
+    body.push_str("\nHeaders:\n");
     for (name, value) in parts.headers.iter() {
         body.push_str(&format!(
             "{}: {}\n",
@@ -54,6 +59,20 @@ async fn whoami(State(state): State<AppState>, request: Request<Body>) -> impl I
         ));
     }
 
+    match to_bytes(request_body, usize::MAX).await {
+        Ok(bytes) if !bytes.is_empty() => {
+            body.push('\n');
+            body.push_str("Body:\n");
+            body.push_str(&String::from_utf8_lossy(&bytes));
+        }
+        Ok(_) => {}
+        Err(err) => {
+            body.push('\n');
+            body.push_str(&format!("Body: <failed to read body: {err}>\n"));
+        }
+    }
+
+    log::info!("body: {}", body);
     ([(header::CONTENT_TYPE, "text/plain; charset=utf-8")], body)
 }
 
@@ -152,8 +171,8 @@ async fn main() -> anyhow::Result<()> {
     };
 
     let mut app = Router::new()
-        .route("/", get(whoami))
-        .route("/{*path}", get(whoami))
+        .route("/", get(whoami).post(whoami))
+        .route("/{*path}", get(whoami).post(whoami))
         .with_state(state);
 
     app = app.layer(TraceLayer::new_for_http());
@@ -168,7 +187,11 @@ async fn main() -> anyhow::Result<()> {
             .to_string()
     );
 
-    axum::serve(listener, app).await?;
+    axum::serve(
+        listener,
+        app.into_make_service_with_connect_info::<SocketAddr>(),
+    )
+    .await?;
 
     Ok(())
 }
