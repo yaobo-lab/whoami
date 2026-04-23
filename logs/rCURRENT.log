@@ -1,0 +1,25 @@
+2026.04.23 12:05:15.954 [INFO] [app]: server is running on 0.0.0.0:3000
+2026.04.23 12:05:19.177 [DEBUG] [tower_http::trace::make_span]: request; method=GET uri=/ version=HTTP/1.1
+2026.04.23 12:05:19.177 [DEBUG] [tower_http::trace::on_request]: started processing request
+2026.04.23 12:05:19.177 [DEBUG] [tower_http::trace::on_response]: finished processing request latency=0 ms status=200
+2026.04.23 12:05:30.175 [DEBUG] [tower_http::trace::make_span]: request; method=GET uri=/ version=HTTP/1.1
+2026.04.23 12:05:30.175 [DEBUG] [tower_http::trace::on_request]: started processing request
+2026.04.23 12:05:30.175 [DEBUG] [tower_http::trace::on_response]: finished processing request latency=0 ms status=200
+2026.04.23 12:05:30.614 [DEBUG] [tower_http::trace::make_span]: request; method=GET uri=/ version=HTTP/1.1
+2026.04.23 12:05:30.615 [DEBUG] [tower_http::trace::on_request]: started processing request
+2026.04.23 12:05:30.615 [DEBUG] [tower_http::trace::on_response]: finished processing request latency=0 ms status=200
+2026.04.23 12:05:30.815 [DEBUG] [tower_http::trace::make_span]: request; method=GET uri=/ version=HTTP/1.1
+2026.04.23 12:05:30.815 [DEBUG] [tower_http::trace::on_request]: started processing request
+2026.04.23 12:05:30.815 [DEBUG] [tower_http::trace::on_response]: finished processing request latency=0 ms status=200
+2026.04.23 12:05:32.301 [DEBUG] [tower_http::trace::make_span]: request; method=GET uri=/ version=HTTP/1.1
+2026.04.23 12:05:32.302 [DEBUG] [tower_http::trace::on_request]: started processing request
+2026.04.23 12:05:32.302 [DEBUG] [tower_http::trace::on_response]: finished processing request latency=0 ms status=200
+2026.04.23 12:05:32.519 [DEBUG] [tower_http::trace::make_span]: request; method=GET uri=/ version=HTTP/1.1
+2026.04.23 12:05:32.519 [DEBUG] [tower_http::trace::on_request]: started processing request
+2026.04.23 12:05:32.519 [DEBUG] [tower_http::trace::on_response]: finished processing request latency=0 ms status=200
+2026.04.23 12:05:32.713 [DEBUG] [tower_http::trace::make_span]: request; method=GET uri=/ version=HTTP/1.1
+2026.04.23 12:05:32.713 [DEBUG] [tower_http::trace::on_request]: started processing request
+2026.04.23 12:05:32.713 [DEBUG] [tower_http::trace::on_response]: finished processing request latency=0 ms status=200
+2026.04.23 12:05:32.917 [DEBUG] [tower_http::trace::make_span]: request; method=GET uri=/ version=HTTP/1.1
+2026.04.23 12:05:32.917 [DEBUG] [tower_http::trace::on_request]: started processing request
+2026.04.23 12:05:32.918 [DEBUG] [tower_http::trace::on_response]: finished processing request latency=0 ms status=200

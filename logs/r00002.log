@@ -1,0 +1,17 @@
+2026.04.23 11:58:48.092 [INFO] [whoami]: server is running on 0.0.0.0:3000
+2026.04.23 11:58:51.746 [DEBUG] [tower_http::trace::make_span]: request; method=GET uri=/ version=HTTP/1.1
+2026.04.23 11:58:51.747 [DEBUG] [tower_http::trace::on_request]: started processing request
+2026.04.23 11:58:51.747 [DEBUG] [tower_http::trace::on_response]: finished processing request latency=0 ms status=500
+2026.04.23 11:58:51.747 [ERROR] [tower_http::trace::on_failure]: response failed classification=Status code: 500 Internal Server Error latency=0 ms
+2026.04.23 11:58:56.924 [DEBUG] [tower_http::trace::make_span]: request; method=GET uri=/ version=HTTP/1.1
+2026.04.23 11:58:56.925 [DEBUG] [tower_http::trace::on_request]: started processing request
+2026.04.23 11:58:56.925 [DEBUG] [tower_http::trace::on_response]: finished processing request latency=0 ms status=500
+2026.04.23 11:58:56.925 [ERROR] [tower_http::trace::on_failure]: response failed classification=Status code: 500 Internal Server Error latency=0 ms
+2026.04.23 11:58:57.121 [DEBUG] [tower_http::trace::make_span]: request; method=GET uri=/ version=HTTP/1.1
+2026.04.23 11:58:57.121 [DEBUG] [tower_http::trace::on_request]: started processing request
+2026.04.23 11:58:57.121 [DEBUG] [tower_http::trace::on_response]: finished processing request latency=0 ms status=500
+2026.04.23 11:58:57.121 [ERROR] [tower_http::trace::on_failure]: response failed classification=Status code: 500 Internal Server Error latency=0 ms
+2026.04.23 11:58:57.310 [DEBUG] [tower_http::trace::make_span]: request; method=GET uri=/ version=HTTP/1.1
+2026.04.23 11:58:57.310 [DEBUG] [tower_http::trace::on_request]: started processing request
+2026.04.23 11:58:57.310 [DEBUG] [tower_http::trace::on_response]: finished processing request latency=0 ms status=500
+2026.04.23 11:58:57.310 [ERROR] [tower_http::trace::on_failure]: response failed classification=Status code: 500 Internal Server Error latency=0 ms
