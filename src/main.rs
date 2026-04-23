@@ -18,12 +18,15 @@ use socket2::{Domain, Protocol, Socket, TcpKeepalive, Type};
 use toolkit_rs::get_local_time;
 use toolkit_rs::logger::{self, LogConfig, LogStyle};
 use toolkit_rs::painc::{set_panic_handler, PaincConf};
-use tower_http::trace::TraceLayer;
 
 #[derive(Clone)]
 struct AppState {
     hostname: String,
     ips: Vec<String>,
+}
+
+async fn health() -> impl IntoResponse {
+    ([(header::CONTENT_TYPE, "text/plain; charset=utf-8")], "OK")
 }
 
 async fn whoami(State(state): State<AppState>, request: Request<Body>) -> impl IntoResponse {
@@ -170,12 +173,13 @@ async fn main() -> anyhow::Result<()> {
         ips: ips,
     };
 
-    let mut app = Router::new()
+    let app = Router::new()
+        .route("/api/health", get(health))
         .route("/", get(whoami).post(whoami))
         .route("/{*path}", get(whoami).post(whoami))
         .with_state(state);
 
-    app = app.layer(TraceLayer::new_for_http());
+    //app = app.layer(TraceLayer::new_for_http());
 
     let listener = bind_listener("0.0.0.0", 3000)?;
 

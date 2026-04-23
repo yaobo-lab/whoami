@@ -12,5 +12,4 @@ network = "1.0.0"
 socket2 = "0.6.3"
 tokio = { version = "1.52.1", features = ["full", "default"] }
 toolkit-rs = "1.0.24"
-tower = "0.5.3"
-tower-http = { version = "0.6.8", features = ["fs", "compression-gzip", "compression-br", "trace", "cors", "add-extension", "request-id", "set-header", "limit"] }
+ 
