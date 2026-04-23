@@ -1,4 +1,4 @@
-# docker build -t whoami:1.0.1 .
+# docker build -t whoami:1.0.2 .
 
 FROM crpi-p35inr9lrgirg3t0.cn-hangzhou.personal.cr.aliyuncs.com/yaobo-box/rust-alpine:1.1 AS builder
 WORKDIR /app
