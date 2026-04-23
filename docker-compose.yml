@@ -2,7 +2,7 @@ version: '3.7'
 services:
   whoami:
     container_name: whoami
-    image: whoami:1.0.0
+    image: crpi-p35inr9lrgirg3t0.cn-hangzhou.personal.cr.aliyuncs.com/yaobo-box/whoami:1.0.0
     ports:
       - "3000:3000"
     restart: always
