@@ -35,7 +35,7 @@ async fn whoami(State(state): State<AppState>, request: Request<Body>) -> impl I
         .unwrap_or_else(|| "unknown".to_string());
     let mut body = String::new();
 
-    body.push_str(&format!("\n\nHostname: {}\n", state.hostname));
+    body.push_str(&format!("\nHostname: {}\n", state.hostname));
     body.push_str(&format!("LocalTime: {} \n", local_time()));
     body.push('\n');
 

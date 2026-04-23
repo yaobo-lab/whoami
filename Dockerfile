@@ -1,17 +1,14 @@
-FROM rust:1.52.1 AS builder
+# docker build -t whoami:1.0.0 .
 
-WORKDIR /opt
+FROM crpi-p35inr9lrgirg3t0.cn-hangzhou.personal.cr.aliyuncs.com/yaobo-box/rust-alpine:1.1 AS builder
+WORKDIR /app
+COPY . ./
+RUN cargo build --release
 
-COPY src /opt/src
-COPY Cargo.lock /opt/Cargo.lock
-COPY Cargo.toml /opt/Cargo.toml
 
-RUN cargo install --path .
+FROM crpi-p35inr9lrgirg3t0.cn-hangzhou.personal.cr.aliyuncs.com/yaobo-box/alpine:3.22.1
 
-FROM ubuntu:20.04
+COPY --from=builder /app/target/release/app /bin/app
 
-COPY --from=builder /opt/target/release/rust-whoami /opt/rust-whoami
-
-EXPOSE 8080
-
-ENTRYPOINT ["/opt/rust-whoami"]
+WORKDIR /app
+CMD ["/bin/app"]
