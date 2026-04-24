@@ -81,9 +81,8 @@ async fn whoami(State(state): State<AppState>, request: Request<Body>) -> Respon
     }
 
     if !body.is_empty() {
-        log::info!("body: {}", body);
+        log::info!("{} \n\n", body);
     }
-
     ([(header::CONTENT_TYPE, "text/plain; charset=utf-8")], body).into_response()
 }
 
